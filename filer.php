@@ -17,6 +17,16 @@ Author URI: http://www.ahmednuaman.com
  * to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.
 */
 
+/*
+So, how do you use this? Well, in your .htaccess (or whatever rewrite program you use) will be a directive like so:
+	RewriteRule ^([_0-9a-zA-Z-]+/)?files/(.+) wp-includes/ms-files.php?file=$2 [L]
+	
+You need to rewrite it to:
+	RewriteRule ^([_0-9a-zA-Z-]+/)?files/(.+) wp-admin/admin-ajax.php?file=$2&origin=$1&action=get_blog_file [L]
+	
+This simply rewrites it to this bad ass plugin
+*/
+
 error_reporting( E_ALL ^ E_NOTICE );
 
 add_action( 'wp_ajax_get_blog_file', 				'filer_get_blog_file' );
